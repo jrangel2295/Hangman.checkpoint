@@ -1,0 +1,14 @@
+{
+  "name": "js211_hangman",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha --no-timeouts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^9.1.4"
+  }
+}
