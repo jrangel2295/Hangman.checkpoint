@@ -6,14 +6,47 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+// make array's for catagories food, movies, ,countries
 
+// to show alphabet on html
+let alphabet = [
+  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
+  'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 
+  's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+]
+let alphabetContainer = document.getElementById('alphabetContainer')
+for (let i = 0; i < alphabet.length; i++){
+  let letterElements = document.createElement('div')
+  letterElements.setAttribute('id', alphabet[i])
+  letterElements.classList.add('letter')
+  letterElements.innerText = alphabet[i]
+  alphabetContainer.append(letterElements)
+} 
+// new array with random word generated
+let foodWords = [
+  'almond', 'hotdog', 'garlic', 'lentil','tamale', 'banana', 'waffle', 'butter', 'hummus'
+]
 
-
-const hangMan = () => {
-    return 1+2 
+let foodWord = foodWords[Math.floor(Math.random() * foodWords.length)];
+// console.log(foodWord)
+// This will show the length of the word "_" with an empty letter
+let emptyWord = []
+for(let i = 0; i <foodWord.length; i++){
+  emptyWord.push('          _         ')
 }
+let solution = document.getElementById('solutions')
+let newSolution = foodWord.split('')
+solution.innerText = emptyWord
+emptyWord[3] = 'x'
+// console.log(newSolution)
 
+let showLives = document.getElementById("myLives");
+showLives.textContent = "my lives"
 
+// need to make hints function
+// need reset function 
+// 
+getPrompt()
 
 
 // ----------- test ----------- ----------- test ----------- ----------- test ----------- ----------- test -----------
