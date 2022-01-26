@@ -60,6 +60,7 @@ const getPrompt = () => {
 
 getPrompt();
 
+
 // if (typeof describe === "function") {
 //   // describe('BankAccount', function(){
 //   //     it("Should have an account number, owner's name and a transaction list", function(){

@@ -1,0 +1,59 @@
+body{
+  background: cornflowerblue
+}
+#alphabetContainer{
+  display: flex;
+  flex-wrap: wrap; 
+}
+#alphabetContainer :hover{
+  transition: 1s;
+  transform: scale(1.2);
+  background-color: olive;
+  
+}
+h1{
+  font-family: Arial Black;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  
+}
+.letter{
+  color: white;
+  width: 25px;
+  height: 25px;
+  border: 1px white solid;
+  margin: 2px 2px 2px 0px;
+  display: flex;   
+  justify-content: center;
+  align-items: center;
+}
+#solutions{
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 2px;  
+}
+
+button{
+  align-items: center;
+  justify-content: center;
+  border: ridge, olive, 3px;
+  color: white;
+  background: olive;
+}
+button:hover{
+  background: cornflowerblue;
+  transform: scale(1.1);
+  border: ridge, white;
+}
+
+#myLives{
+font-size:1.6em;
+text-align:center;
+display:block;
+color: white;
+}
