@@ -1,80 +1,87 @@
-'use strict';
-const assert = require('assert');
-const readline = require('readline');
+"use strict";
+// const assert = require("assert"); ---------
+import * as assert from "node:assert";
+// const readline = require("readline"); ---------
+import * as readline from "node:readline";
 // use the readline module to print out to the command line
+
+// using ES modules to use the import/export syntax instead of the required syntax.
+// package.json has to have "type": "module", to know that we are using ESM syntax.
+
+// using nodemon to have an active node enviorment that will change as the code changes without having
+// to kill node and restart over and over.
+// package.json has to have  "start": "nodemon main.js" as well as we have to npm i nodemon.
+// to be able to use nodemon.
+import { randomWordArry, theABC } from "./const.js";
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 });
-// make array's for catagories food, movies, ,countries
+let guess = "";
+let solution = [];
+let guessArray = [];
 
-// to show alphabet on html
-let alphabet = [
-  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 
-  'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 
-  's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
-]
-let alphabetContainer = document.getElementById('alphabetContainer')
-for (let i = 0; i < alphabet.length; i++){
-  let letterElements = document.createElement('div')
-  letterElements.setAttribute('id', alphabet[i])
-  letterElements.classList.add('letter')
-  letterElements.innerText = alphabet[i]
-  alphabetContainer.append(letterElements)
-} 
-// new array with random word generated
-let foodWords = [
-  'almond', 'hotdog', 'garlic', 'lentil','tamale', 'banana', 'waffle', 'butter', 'hummus'
-]
+const hangMan = (guess) => {
+  console.log(solution);
+  if (solution.includes(guess)) {
+    console.log("letter is in the solution");
+    return guess;
+  }
+  if (!solution.includes(guess)) {
+    console.log("The letter is not in the solution");
+    return guess;
+  }
+};
 
-let foodWord = foodWords[Math.floor(Math.random() * foodWords.length)];
-// console.log(foodWord)
-// This will show the length of the word "_" with an empty letter
-let emptyWord = []
-for(let i = 0; i <foodWord.length; i++){
-  emptyWord.push('          _         ')
-}
-let solution = document.getElementById('solutions')
-let newSolution = foodWord.split('')
-solution.innerText = emptyWord
-emptyWord[3] = 'x'
-// console.log(newSolution)
+const newWord = () => {
+  let randomNumber = Math.floor(Math.random() * 50);
+  solution = randomWordArry[randomNumber].split("");
+  console.log(randomNumber);
+  console.log(solution);
+  console.log(typeof solution);
+  return solution;
+};
+newWord();
 
-let showLives = document.getElementById("myLives");
-showLives.textContent = "my lives"
-
-// need to make hints function
-// need reset function 
-// 
-getPrompt()
-
+const guessWord = (guess) => {
+  console.log(guess);
+  return guess;
+};
+// guessWord("a");
 
 // ----------- test ----------- ----------- test ----------- ----------- test ----------- ----------- test -----------
 const getPrompt = () => {
-      rl.question('word', (answer) => {
-        console.log(answer);
-        getPrompt();
-      });
-    }
+  rl.question("word", (answer) => {
+    hangMan(answer);
+    console.log(answer);
+    getPrompt();
+  });
+};
+
+getPrompt();
 
 
-if (typeof describe === 'function'){
-    // describe('BankAccount', function(){
-    //     it("Should have an account number, owner's name and a transaction list", function(){
-    //         const bankAccount1 = new BankAccount('1234567', 'Michael H.'); 
-    //         assert.equal(bankAccount1.accountNumber, '1234567');
-    //         assert.equal(bankAccount1.owner, 'Michael H.')
-    //         assert.equal(bankAccount1.transactions.length, 0)
-    //         assert.equal(bankAccount1.balance(), 0)
-    //     })
-    // })
-    describe('hangMan', function(){
-        it('should add 2 nums', function(){
-            assert.equal(hangMan(), 3)
-        })
-    })
+// if (typeof describe === "function") {
+//   // describe('BankAccount', function(){
+//   //     it("Should have an account number, owner's name and a transaction list", function(){
+//   //         const bankAccount1 = new BankAccount('1234567', 'Michael H.');
+//   //         assert.equal(bankAccount1.accountNumber, '1234567');
+//   //         assert.equal(bankAccount1.owner, 'Michael H.')
+//   //         assert.equal(bankAccount1.transactions.length, 0)
+//   //         assert.equal(bankAccount1.balance(), 0)
+//   //     })
+//   // })
+//   //   describe("hangMan", function () {
+//   //     it("should ", function () {
+//   //       assert.equal(hangMan(), 3);
+//   //     });
+//   //   });
 
-
-}else {
-      getPrompt();
-}
+//   describe("newWord", function () {
+//     it("should produce a random word from the randomWordArray", function () {
+//       assert.equal(typeof (newWord(),'object')); //how to test this if the answer is going to be a random word from the list?
+//     });
+//   });
+// } else {
+//   getPrompt();
+// }
