@@ -138,6 +138,7 @@ if (typeof describe === "function") {
   //     });
   //   });
 
+
   describe("newWord", function () {
     it("should produce a random word from the randomWordArray", function () {
       assert.equal(typeof (newWord(), "object")); //how to test this if the answer is going to be a random word from the list?
