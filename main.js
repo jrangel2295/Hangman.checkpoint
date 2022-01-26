@@ -26,7 +26,7 @@ let turnCounter = 0;
 const newWord = () => {
   let randomNumber = Math.floor(Math.random() * 50);
   solution = randomWordArry[randomNumber].split("");
-  console.log(solution);
+  // console.log(solution);
   for (let i = 0; i < solution.length; i++) {
     guessArray.push("_");
   }
@@ -61,74 +61,63 @@ If the character matches it will set that same index in the guessArray to the ch
 _ temp value.  
  */
 
-// const checkForWin = () => {
-//   if(solution.join('') === guessArray.join('')){
-//     console.log('You WIN!')
-//     return true
-//   }
-// }
-/*I need to get this function checkForWin() working*/
+const checkForWin = () => {
+  if(solution.join('') === guessArray.join('')){
+    console.log(`You WIN! The answer was ${solution.join("")}`)
+    console.log('New Game!')
+    return true
+  }
+}
 
 const hangMan = (guess) => {
-  addLetter(guess);
-
-  if (addLetter() !== true) {
-    turnCounter++;
-    console.log(turnCounter);
+  if (!isNaN(guess)) {
+    console.log(typeof guess);
+    return console.log("Letters only you heathen!");
   }
-  /*I only want the turnCounter to increment if the guess was not correct, nut it is still icrementing
-  every turn. HELP!
-  
-  I have added turnCounter-- where needed to get the turn situation fixed for now.
-  */
-
-  // if(typeof(guess) !== NaN){
-  //   turnCounter--
-  //   console.log(turnCounter)
-  //   return console.log('Letters only you heathen!')
-  // }
-  /*Something with this comparison is not running correctly. */
 
   if (guess.length > 1) {
     console.log("One letter at a time");
-    turnCounter--;
-    console.log(turnCounter);
     return guess;
   }
 
   if (guess.length < 1) {
     console.log("Please select a letter to guess");
-    turnCounter--;
-    console.log(turnCounter);
     return guess;
   }
 
   if (solution.includes(guess)) {
     console.log(`The letter ${guess} is in the solution`);
-    turnCounter--;
+    addLetter(guess);
     console.log(turnCounter);
+    if(checkForWin()){
+      turnCounter = 0;
+      guessArray = []
+      newWord()
+    }
     return guess;
   }
 
   if (!solution.includes(guess) && guess.length >= 1) {
     console.log(`The letter ${guess} is not in the solution`);
-    //take a turn away
-    return guess;
-  }
-
-  if (turnCounter >= 9) {
-    console.log("OUT OF TURNS!");
-    turnCounter = 0;
-    return console.log(`GAME OVER! The answer was ${solution.join("")}`);
-    //check for win, reset board/give solution if when not meet
+    turnCounter++;
+    console.log(turnCounter);
+    if (turnCounter >= 9) {
+      console.log("OUT OF TURNS!");
+      console.log(`GAME OVER! The answer was ${solution.join("")}`);
+      console.log('New Game!')
+      turnCounter = 0;
+      guessArray = []
+      return newWord()
+      //check for win, reset board/give solution if when not meet
+    }
+    return guess
   }
 };
-
 // ----------- test ----------- ----------- test ----------- ----------- test ----------- ----------- test -----------
 const getPrompt = () => {
   rl.question("word ", (answer) => {
-    hangMan(answer);
     console.log(answer);
+    hangMan(answer);
     getPrompt();
   });
 };
