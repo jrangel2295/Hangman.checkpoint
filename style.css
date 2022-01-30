@@ -57,3 +57,17 @@ text-align:center;
 display:block;
 color: white;
 }
+input{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border: ridge, olive, 3px;
+  color: white;
+  background: olive;
+}
+input:hover{
+  background: cornflowerblue;
+  transform: scale(1.1);
+  border: ridge, white;
+}
