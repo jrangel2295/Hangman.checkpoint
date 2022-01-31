@@ -11,10 +11,13 @@
     <h1>Hangman</h1>
     <div id="alphabetContainer"></div>
     <div id='solutions'></div>
-    <button id="start">Start</button>
-    <button id="hints"> Hints</button>
-    <button id="reset"> Reset</button>
+    <form id="myForm" onsubmit="reset()">
+        <input type="submit" value="New Game" onclick="reset(this)"/>
+    </form>
     <p id="myLives"></p>
-    <script src="main.js"></script>
+    <div id="pole">
+        <img id="image" src="" alt="">
+    </div>
 </body>
+<script type="module" src="index.js"></script>
 </html>

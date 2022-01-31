@@ -2,8 +2,8 @@
   "name": "js211_hangman",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
-  "type": "module", 
+  "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "mocha --no-timeouts", 
     "start": "nodemon main.js"
@@ -15,4 +15,3 @@
     "nodemon": "^2.0.15"
   }
 }
-

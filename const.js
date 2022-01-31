@@ -51,31 +51,5 @@ export const randomWordArry = [
   "lock",
 ];
 
-export const theABC = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
-  "m",
-  "n",
-  "o",
-  "p",
-  "q",
-  "r",
-  "s",
-  "t",
-  "u",
-  "v",
-  "w",
-  "x",
-  "y",
-  "z"
-];
+
+export const gamePeices = ['./images/fullBody.jpg', './images/leg.jpg', './images/arms.jpg', './images/arm.jpg', './images/torso.jpg', './images/head.jpg', './images/nuse.jpg', './images/nextpole.jpg', './images/pole.jpg']
