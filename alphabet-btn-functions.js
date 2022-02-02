@@ -1,4 +1,4 @@
-import { hangMan, guessArray } from "./main.js"
+import { hangMan, guessArray } from "./index.js"
 
 // import { randomWordArry } from "./const.js";
 let alphabet = [

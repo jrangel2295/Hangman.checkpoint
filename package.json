@@ -2,7 +2,7 @@
   "name": "js211_hangman",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.js", 
   "type": "module",
   "scripts": {
     "test": "mocha --no-timeouts", 

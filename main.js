@@ -1,11 +1,10 @@
 "use strict";
-// const assert = require("assert"); ---------
-// import * as assert from "node:assert";
-// import { Console } from "node:console";
-// const readline = require("readline"); ---------
-// import * as readline from "node:readline";
+// const assert = require("assert");
+import * as assert from "node:assert";
+import { Console } from "node:console";
+// const readline = require("readline");
+import * as readline from "node:readline";
 // use the readline module to print out to the command line
-
 // using ES modules to use the import/export syntax instead of the required syntax.
 // package.json has to have "type": "module", to know that we are using ESM syntax.
 
@@ -13,12 +12,12 @@
 // to kill node and restart over and over.
 // package.json has to have  "start": "nodemon main.js" as well as we have to npm i nodemon.
 // to be able to use nodemon.
-import { randomWordArry} from "./const.js";
-import {addImage} from "./addImage.js"
-// const rl = readline.createInterface({
-//   input: process.stdin,
-//   output: process.stdout,
-// });
+import { randomWordArray } from "./const.js";
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
 let guess = "";
 let solution = [];
 export let guessArray = [];
@@ -26,12 +25,12 @@ let turnCounter = 0;
 
 export const newWord = () => {
   let randomNumber = Math.floor(Math.random() * 50);
-  solution = randomWordArry[randomNumber].split("");
+  solution = randomWordArray[randomNumber].split("");
   // console.log(solution);
   for (let i = 0; i < solution.length; i++) {
     guessArray.push("_");
   }
-  console.log('guessarray', guessArray);
+  console.log("guessarray", guessArray);
   return solution;
 };
 
@@ -63,12 +62,12 @@ _ temp value.
  */
 
 const checkForWin = () => {
-  if(solution.join('') === guessArray.join('')){
-    console.log(`You WIN! The answer was ${solution.join("")}`)
-    console.log('New Game!')
-    return true
+  if (solution.join("") === guessArray.join("")) {
+    console.log(`You WIN! The answer was ${solution.join("")}`);
+    console.log("New Game!");
+    return true;
   }
-}
+};
 
 export const hangMan = (guess) => {
   if (!isNaN(guess)) {
@@ -90,10 +89,10 @@ export const hangMan = (guess) => {
     console.log(`The letter ${guess} is in the solution`);
     addLetter(guess);
     console.log(turnCounter);
-    if(checkForWin()){
+    if (checkForWin()) {
       turnCounter = 0;
-      guessArray = []
-      newWord()
+      guessArray = [];
+      newWord();
     }
     return guess;
   }
@@ -102,74 +101,32 @@ export const hangMan = (guess) => {
     console.log(`The letter ${guess} is not in the solution`);
     turnCounter++;
     console.log(turnCounter);
-    addImage()
+    // addImage();//------------------------------------------------------
     if (turnCounter >= 9) {
       console.log("OUT OF TURNS!");
       console.log(`GAME OVER! The answer was ${solution.join("")}`);
-      console.log('New Game!')
+      console.log("New Game!");
       turnCounter = 0;
-      guessArray = []
-      return newWord()
+      guessArray = [];
+      return newWord();
       //check for win, reset board/give solution if when not meet
     }
-    return guess
+    return guess;
   }
 };
 // ----------- test ----------- ----------- test ----------- ----------- test ----------- ----------- test -----------
-// const getPrompt = () => {
-//   rl.question("word ", (answer) => {
-//     console.log(answer);
-//     hangMan(answer);
-//     getPrompt();
-//   });
-// };
+const getPrompt = () => {
+  rl.question("word ", (answer) => {
+    console.log(answer);
+    hangMan(answer);
+    getPrompt();
+  });
+};
+getPrompt();
 
-// // if (typeof describe === "function") {
-//   // describe('BankAccount', function(){
-//   //     it("Should have an account number, owner's name and a transaction list", function(){
-//   //         const bankAccount1 = new BankAccount('1234567', 'Michael H.');
-//   //         assert.equal(bankAccount1.accountNumber, '1234567');
-//   //         assert.equal(bankAccount1.owner, 'Michael H.')
-//   //         assert.equal(bankAccount1.transactions.length, 0)
-//   //         assert.equal(bankAccount1.balance(), 0)
-//   //     })
-//   // })
-//   //   describe("hangMan", function () {
-//   //     it("should ", function () {
-//   //       assert.equal(hangMan(), 3);
-//   //     });
-//   //   });
-
-//   if (!solution.includes(guess) && guess.length >= 1) {
-//     console.log(`The letter ${guess} is not in the solution`);
-//     turnCounter++;
-//     console.log(turnCounter);
-//     if (turnCounter >= 9) {
-//       console.log("OUT OF TURNS!");
-//       console.log(`GAME OVER! The answer was ${solution.join("")}`);
-//       console.log('New Game!')
-//       turnCounter = 0;
-//       guessArray = []
-//       return newWord()
-//       //check for win, reset board/give solution if when not meet
-//     }
-//     return guess
-//   }
-// };
-// // ----------- test ----------- ----------- test ----------- ----------- test ----------- ----------- test -----------
-// const getPrompt = () => {
-//   rl.question("word ", (answer) => {
-//     console.log(answer);
-//     hangMan(answer);
-//     getPrompt();
-//   });
-// };
-  
-//   describe("newWord", function () {
-//     it("should produce a random word from the randomWordArray", function () {
-//       assert.equal(typeof (newWord(), "object")); //how to test this if the answer is going to be a random word from the list?
-//     });
-//   });
-// } else {
-//   getPrompt();
-// }
+/*
+  This file is no longer working, the only change that i can see that may have a part in it is that the "main" label
+in the package.json file has been changed from main.js to index.js
+  The error that keep getting thrown is, "Missing script: "start""
+i have checked and in the package.json file in the scripts section start is listed to run nodemon on main.js.
+*/

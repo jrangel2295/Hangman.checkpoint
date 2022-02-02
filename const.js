@@ -1,4 +1,4 @@
-export const randomWordArry = [
+export const randomWordArray = [
   "steam",
   "flag",
   "unity",
